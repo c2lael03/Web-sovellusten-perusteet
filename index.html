@@ -4,13 +4,14 @@
     <title>Sääsivusto</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/style.css">
 
     <meta name="keywords" content="weather, world, forecast, current">
     <meta name="description" content="Oma sääsivusto.">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-
+    <script src="./js/functions.js" defer></script>
 </head>
 <body>
     <header>
@@ -40,88 +41,34 @@
         <p>Auringonnousu: <span id="sunrise"></span></p>
         <p>Auringonlasku: <span id="sunset"></span></p>
     </div>
+    
+    <h2>Tuntiennuste:</h2>
+    <div id="hourly-forecast-list">
+        <div class="hourly-item">18:00<br>🌤️<br>+15°C</div>
+        <div class="hourly-item">19:00<br>🌥️<br>+14°C</div>
+        <div class="hourly-item">20:00<br>🌧️<br>+13°C</div>
+        <p>Sademäärä tunnin sisällä:</p>
+        </div>
+    
+    <h2>Viikkoennuste:</h2>
+    <div id="weekly-forecast-list">
+        <div class="weekly-item">18:00<br>🌤️<br>+15°C</div>
+        <div class="weekly-item">19:00<br>🌥️<br>+14°C</div>
+        <div class="weekly-item">20:00<br>🌧️<br>+13°C</div>
+        <p>Sademäärä tunnin sisällä:</p>
+        </div>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <div id="map"></div>
-        <div id="precipitation">
-            <p>Sademäärä tunnin sisällä:</p>
-            <div id="precipitation-timeline"></div>
-        </div>
-        <div id="hourly-forecast">
-            <h2>Tuntiennuste:</h2>
-            <div id="hourly-forecast-list"></div>
-        </div>
-        <div id="daily-forecast">
-            <h2>8 päivän ennuste</h2>
-            <div id="daily-forecast-list"></div>
-        </div>
-        <div id="air-quality">
-            <h2>Ilmanlaatu</h2>
-            <div id="air-quality-data"></div>
-        </div>
-        <div id="weather-alerts">
-            <h2>Säävaroitukset</h2>
-            <div id="alert-list"></div>
-        </div>
+
     </main>
-
-
-
-
-
-    <script>
-        const apiKey = "511415362888f54ddd231fc82ca75e8e"; // Käytä vain tätä API-avainta
-        const iconUrl = 'http://openweathermap.org/img/wn/';
-
-        const getLocation = () => {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(position => {
-                    getWeather(position.coords.latitude, position.coords.longitude);
-                    document.getElementById('location').textContent = position.coords.latitude.toFixed(3) + ', ' + position.coords.longitude.toFixed(3);
-                }, error => {
-                    alert(error.message);
-                });
-            } else {
-                alert('Selaimesi ei tue sijaintia');
-            }
-        };
-
-        const getWeather = (lat, lon) => {
-            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-            fetch(apiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('cityName').textContent = data.name;
-                    document.getElementById('temperature').textContent = data.main.temp + ' °C';
-                    document.getElementById('wind-speed').textContent = data.wind.speed + ' m/s';
-                    document.getElementById('weather-description').textContent = data.weather[0].description;
-                    document.getElementById('weather-icon').src = iconUrl + data.weather[0].icon + '@2x.png';
-                })
-                .catch(error => {
-                    alert(error.message);
-                });
-        };
-
-        getLocation();
-    </script>
 
     <h2>Linkkejä muille sääsivustoille</h2>
     <ul>
         <li><a href="https://www.foreca.fi/Finland/Oulu">Foreca.fi</a></li>
         <li><a href="https://www.ilmatieteenlaitos.fi/saa/oulu">Ilmatieteenlaitos.fi</a></li>
     </ul>
-
-
-
-
-
-
-
-    <h1>TESTI</h1>
-    
-    
-
 
 </body>
 </html>

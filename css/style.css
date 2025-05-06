@@ -68,3 +68,25 @@ map {
     height: 300px; /* Voit säätää korkeutta */
     width: 100%; /* Voit säätää leveyttä */
 }
+#hourly-forecast-list {
+    display: flex;
+    overflow-x: auto; /* Jos tunteja on paljon, mahdollistaa vaakasuuntaisen vierityksen */
+    gap: 15px; /* Tilaa tunteja edustavien elementtien välissä */
+    padding: 10px 0;
+}
+
+.hourly-item {
+    /* Tyylit yksittäiselle tunnin ennusteelle */
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    min-width: 100px; /* Estää liiallisen kutistumisen */
+}
+
+.hourly-item img {
+    max-width: 50px;
+    height: auto;
+    display: block; /* Tämä on ok, sillä se on kuvan sisällä */
+    margin: 5px auto;
+}
