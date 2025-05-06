@@ -5,6 +5,7 @@ body {
     margin: 0;
     padding: 0;
     margin-left: 20px;
+    padding-bottom: 60px; /* Säädä tämä arvo alatunnisteesi korkeuden mukaan */
 }
 
 header {
@@ -68,6 +69,8 @@ footer {
     position: fixed; /* Voit muuttaa tämän tarpeen mukaan */
     bottom: 0;
     width: 100%;
+    box-sizing: border-box; /* Varmistaa, että padding ei lisää leveyttä */
+    z-index: 10; /* Varmistaa, että alatunniste on muun sisällön päällä (tarvittaessa) */    
 }
 
 a {
