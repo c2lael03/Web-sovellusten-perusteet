@@ -1,16 +1,22 @@
 body {
     font-family: "Poppins", sans-serif; /* Käytetään Poppins fonttia */
-    color: #040000; /* Tekstin väri */
-    background-color: #63f74f; /* Taustaväri */
+    color: #f0f0f0; /* Tekstin väri */
+    background-color: #333; /* Tummanharmaa tausta */
     margin: 0;
     padding: 0;
-    margin-left: 20px; /* Lisää 20 pikselin marginaalin vasemmalle */
+    margin-left: 20px;
 }
 
 header {
-    background-color: #f0f0f0;
+    background-color: #222; /* Vielä tummempi header */
+    color: #eee;
     text-align: center;
     padding: 20px 0;
+    border-bottom: 1px solid #555; /* Hieman vaaleampi reunaviiva erottamaan */
+}
+
+header h1 {
+    margin-bottom: 10px;
 }
 
 .header-image {
@@ -18,20 +24,91 @@ header {
     height: auto;
 }
 
-h1 {
-    text-align: center;
+h1, h2 {
+    color: #eee; /* Vaaleat otsikot */
+    text-align: center; /* Säilytetään keskitys */
 }
 
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: #87ceeb;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    color: #add8e6;
+}
+
+nav ul li a.active {
+    font-weight: bold;
+    color: #fff;
+}
+
+main {
+    padding: 20px;
+    max-width: 960px;
+    margin: 20px auto;
+    background-color: #444;
+    border-radius: 5px;
+}
+
+footer {
+    background-color: #222;
+    color: #eee;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed; /* Voit muuttaa tämän tarpeen mukaan */
+    bottom: 0;
+    width: 100%;
+}
+
+a {
+    color: #87ceeb; /* Esimerkiksi vaaleansininen linkkiväri */
+}
+
+a:hover {
+    color: #add8e6; /* Vielä vaaleampi hover-väri */
+}
+
+
 #weather-container {
-    width: 300px;
+    width: 400px;
     margin: 20px auto;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #555; /* Tummempi reunaviiva */
     border-radius: 5px;
+    background-color: #444; /* Tummempi tausta kontille */
+    display: flex; /* Otetaan Flexbox käyttöön */
+    flex-wrap: wrap; /* Jos tila loppuu, tiedot siirtyvät seuraavalle riville */
+    justify-content: space-between; /* Jakaa tilaa tietojen väliin */
+    min-width: 80px; /* Minimileveys, jonka elementit yrittävät säilyttää */
+    margin-bottom: 10px; /* Lisätään hieman tilaa allekkain ollessa */
+}
+
+#weather-container p {
+    width: 48%; /* Noin puolet leveydestä per elementti (jättää hieman tilaa väliin) */
+    margin-bottom: 8px; /* Pientä tilaa rivien väliin */
+}
+
+/* Sääkuvakkeelle oma sääntö, jotta se voi tarvittaessa olla leveämpi */
+#weather-container #weather-icon {
+    width: 100%;
+    text-align: center;
+    margin: 10px auto;
+    order: -1; /* Siirretään kuvake yläreunaan */
 }
 
 .weather-data {
     font-weight: bold;
+    color: #fff; /* Valkoinen korostettu teksti */
 }
 
 .weather-icon {
@@ -72,7 +149,10 @@ map {
     display: flex;
     overflow-x: auto; /* Jos tunteja on paljon, mahdollistaa vaakasuuntaisen vierityksen */
     gap: 15px; /* Tilaa tunteja edustavien elementtien välissä */
-    padding: 10px 0;
+    padding: 10px;
+    flex-wrap: wrap; /* Lisää tämä */
+    justify-content: center; /* Varmistetaan, että elementit alkavat vasemmalta */
+
 }
 
 .hourly-item {
@@ -82,11 +162,41 @@ map {
     border-radius: 5px;
     text-align: center;
     min-width: 100px; /* Estää liiallisen kutistumisen */
+    min-width: 80px; /* Minimileveys, jonka elementit yrittävät säilyttää */
+    margin-bottom: 10px; /* Lisätään hieman tilaa allekkain ollessa */
 }
 
 .hourly-item img {
     max-width: 50px;
     height: auto;
     display: block; /* Tämä on ok, sillä se on kuvan sisällä */
+    margin: 5px auto;
+}
+
+#daily-forecast-list {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding: 10px;
+    margin-top: 20px; /* Lisää tilaa tuntiennusteen alle */
+    flex-wrap: wrap; /* Lisää tämä */
+    justify-content: center; /* Varmistetaan, että elementit alkavat vasemmalta */
+
+}
+
+.daily-item {
+    text-align: center;
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 5px;
+    min-width: 80px; /* Voit säätää leveyttä */
+    min-width: 80px; /* Minimileveys, jonka elementit yrittävät säilyttää */
+    margin-bottom: 10px; /* Lisätään hieman tilaa allekkain ollessa */
+}
+
+.daily-item img {
+    max-width: 40px;
+    height: auto;
+    display: block;
     margin: 5px auto;
 }

@@ -8,6 +8,7 @@ const getLocation = () => {
         navigator.geolocation.getCurrentPosition(position => {
             getWeather(position.coords.latitude, position.coords.longitude);
             getHourlyForecast(position.coords.latitude, position.coords.longitude); // Lisätty tämä rivi
+            getDailyForecast(position.coords.latitude, position.coords.longitude); // Lisätty tämä rivi
             document.getElementById('location').textContent = position.coords.latitude.toFixed(3) + ', ' + position.coords.longitude.toFixed(3);
         }, error => {
             alert(error.message);
@@ -81,6 +82,64 @@ const displayHourlyForecast = (forecastList) => {
           <p>${temperature} °C</p>
       `;
       hourlyForecastListDiv.appendChild(hourlyItem);
+  }
+};
+
+
+const getDailyForecast = (lat, lon) => {
+  const dailyForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  fetch(dailyForecastUrl)
+      .then(response => response.json())
+      .then(data => {
+          displayDailyForecast(data.list); // Lähetetään ennustelista näyttämisfunktiolle
+      })
+      .catch(error => {
+          console.error("Virhe viikkoennustietojen haussa:", error);
+      });
+};
+
+const displayDailyForecast = (forecastList) => {
+  const dailyForecastListDiv = document.getElementById('daily-forecast-list');
+  dailyForecastListDiv.innerHTML = ''; // Tyhjennetään edellinen sisältö
+
+  const dailyData = {}; // Objekti päivittäisten ennusteiden tallentamiseen
+
+  forecastList.forEach(forecast => {
+      const date = new Date(forecast.dt * 1000);
+      const day = date.toLocaleDateString([], { weekday: 'short' }); // Lyhyt päivän nimi
+      const hour = date.getHours();
+
+      // Tallennetaan keskipäivän (klo 12) ennuste kullekin päivälle
+      if (hour >= 11 && hour <= 13) {
+          if (!dailyData[day]) {
+              dailyData[day] = {
+                  temperature: forecast.main.temp.toFixed(1),
+                  icon: forecast.weather[0].icon
+              };
+          }
+      }
+      // Jos keskipäivän dataa ei löydy, otetaan ensimmäinen ennuste päivältä
+      else if (!dailyData[day]) {
+          dailyData[day] = {
+              temperature: forecast.main.temp.toFixed(1),
+              icon: forecast.weather[0].icon
+          };
+      }
+  });
+
+  // Luodaan HTML-elementit päivittäisille ennusteille
+  for (const day in dailyData) {
+      const forecast = dailyData[day];
+      const iconUrl = `http://openweathermap.org/img/wn/${forecast.icon}@2x.png`;
+
+      const dailyItem = document.createElement('div');
+      dailyItem.classList.add('daily-item');
+      dailyItem.innerHTML = `
+          <p>${day}</p>
+          <img src="${iconUrl}" alt="Sääkuvake">
+          <p>${forecast.temperature} °C</p>
+      `;
+      dailyForecastListDiv.appendChild(dailyItem);
   }
 };
 

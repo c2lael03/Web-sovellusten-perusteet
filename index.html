@@ -1,25 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Sääsivusto</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
+    <title>Sääsivusto - Etusivu</title>
+    <link rel="stylesheet" href="css/style.css">
+
 
     <meta name="keywords" content="weather, world, forecast, current">
     <meta name="description" content="Oma sääsivusto.">
     <link href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="./js/functions.js" defer></script>
+
 </head>
+
+
 <body>
     <header>
         <img src="images/saabanneri.jpg" alt="Sääbanneri" class="header-image"/>
+        <h1>Sääsivusto</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Etusivu</a></li>
+                <li><a href="asetukset.html">Asetukset</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <h1>Sääsivusto</h1>
-
+    <main>
     <h2>Säätiedot sijaintisi perusteella</h2>
     <div id="weather-container">
         <p>Sää: <span id="weather-description" class="weather-data"></span></p>
@@ -44,31 +53,30 @@
     
     <h2>Tuntiennuste:</h2>
     <div id="hourly-forecast-list">
-        <div class="hourly-item">18:00<br>🌤️<br>+15°C</div>
-        <div class="hourly-item">19:00<br>🌥️<br>+14°C</div>
-        <div class="hourly-item">20:00<br>🌧️<br>+13°C</div>
-        <p>Sademäärä tunnin sisällä:</p>
         </div>
     
     <h2>Viikkoennuste:</h2>
-    <div id="weekly-forecast-list">
-        <div class="weekly-item">18:00<br>🌤️<br>+15°C</div>
-        <div class="weekly-item">19:00<br>🌥️<br>+14°C</div>
-        <div class="weekly-item">20:00<br>🌧️<br>+13°C</div>
-        <p>Sademäärä tunnin sisällä:</p>
-        </div>
+    <div id="daily-forecast-list">
+    </div>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <div id="map"></div>
-
-    </main>
 
     <h2>Linkkejä muille sääsivustoille</h2>
     <ul>
         <li><a href="https://www.foreca.fi/Finland/Oulu">Foreca.fi</a></li>
         <li><a href="https://www.ilmatieteenlaitos.fi/saa/oulu">Ilmatieteenlaitos.fi</a></li>
     </ul>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Oma Sääsivusto</p>
+    </footer>
+
+    <script src="js/functions.js"></script>
+    <script src="js/script.js"></script>
 
 </body>
 </html>

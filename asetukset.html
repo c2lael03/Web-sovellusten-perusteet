@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sääsivusto - Asetukset</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <img src="images/saabanneri.jpg" alt="Sääbanneri" class="header-image"/>
+        <h1>Sääsivusto</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Etusivu</a></li>
+                <li><a href="asetukset.html" class="active">Asetukset</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Asetukset</h2>
+        <label for="temperatureUnit">Lämpötilayksikkö:</label>
+        <select id="temperatureUnit">
+            <option value="metric">Celsius (°C)</option>
+            <option value="imperial">Fahrenheit (°F)</option>
+        </select>
+        <button id="saveSettings">Tallenna</button>
+        <p id="settingsMessage"></p>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Oma Sääsivusto</p>
+    </footer>
+
+    <script src="js/asetukset.js"></script>
+</body>
+</html>
