@@ -1,0 +1,70 @@
+body {
+    font-family: "Poppins", sans-serif; /* Käytetään Poppins fonttia */
+    color: #040000; /* Tekstin väri */
+    background-color: #63f74f; /* Taustaväri */
+    margin: 0;
+    padding: 0;
+    margin-left: 20px; /* Lisää 20 pikselin marginaalin vasemmalle */
+}
+
+header {
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.header-image {
+    max-width: 100%;
+    height: auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+#weather-container {
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.weather-data {
+    font-weight: bold;
+}
+
+.weather-icon {
+    display: block;
+    margin: 10px auto;
+    max-width: 100px;
+}
+
+#city-input {
+    display: block;
+    margin: 10px auto;
+    padding: 5px;
+    width: 200px;
+}
+
+#get-weather-button {
+    display: block;
+    margin: 10px auto;
+    padding: 5px 10px;
+}
+
+ul {
+    list-style-type: none;
+    text-align: center;
+    padding: 0;
+}
+
+li {
+    margin: 5px 0;
+}
+
+
+map {
+    height: 300px; /* Voit säätää korkeutta */
+    width: 100%; /* Voit säätää leveyttä */
+}

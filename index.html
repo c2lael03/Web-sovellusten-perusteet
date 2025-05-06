@@ -1,20 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>HTML Demo</title>
+    <title>Sääsivusto</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <meta name="keywords" content="weather, world, forecast, current">
+    <meta name="description" content="Oma sääsivusto.">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
 </head>
 <body>
-    <h1>My homepage</h1>
-    <img src="images/pic.jpg" alt="HTML5 Logo" width="200"/>
-    <h2>About me</h2>
-    <p>Olen Elina ja yritän korottaa arvosanaani.</p>
-    <h2>Minun lempinettisivustoni</h2>
+    <header>
+        <img src="images/saabanneri.jpg" alt="Sääbanneri" class="header-image"/>
+    </header>
+
+    <h1>Sääsivusto</h1>
+
+    <h2>Säätiedot sijaintisi perusteella</h2>
+    <div id="weather-container">
+        <p>Sää: <span id="weather-description" class="weather-data"></span></p>
+        <img id="weather-icon" src="" alt="Sääkuvake" class="weather-icon">
+
+        <p>Sijainti: <span id="location" class="weather-data"></span></p>
+        <p>Paikkakunta: <span id="cityName" class="weather-data"></span></p>
+        <p>Lämpötila: <span id="temperature" class="weather-data"></span></p>
+        <p>Tuntuu kuin: <span id="feels_like"class="weather-data"></span></p>
+        <p>Tuulen nopeus: <span id="wind-speed" class="weather-data"></span></p>
+        <p>Pilvisyys: <span id="clouds"></span>%, <span id="weather-data"></span></p>
+        <p>Näkyvyys: <span id="visibility"></span> km</p>
+        <p>Ilmanpaine: <span id="pressure"></span> hPa</p> 
+        <p>Kosteus: <span id="humidity"></span>%</p> 
+        <p>Kastepiste: <span id="dew-point"></span> °C</p>
+        <p>UV-indeksi: <span id="uvi"></span></p>
+        <p>Sade: <span id="rain"></span> mm</p>
+        <p>Lumi: <span id="snow"></span> mm</p>
+        <p>Auringonnousu: <span id="sunrise"></span></p>
+        <p>Auringonlasku: <span id="sunset"></span></p>
+    </div>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <div id="map"></div>
+        <div id="precipitation">
+            <p>Sademäärä tunnin sisällä:</p>
+            <div id="precipitation-timeline"></div>
+        </div>
+        <div id="hourly-forecast">
+            <h2>Tuntiennuste:</h2>
+            <div id="hourly-forecast-list"></div>
+        </div>
+        <div id="daily-forecast">
+            <h2>8 päivän ennuste</h2>
+            <div id="daily-forecast-list"></div>
+        </div>
+        <div id="air-quality">
+            <h2>Ilmanlaatu</h2>
+            <div id="air-quality-data"></div>
+        </div>
+        <div id="weather-alerts">
+            <h2>Säävaroitukset</h2>
+            <div id="alert-list"></div>
+        </div>
+    </main>
+
+
+
+
+
+    <script>
+        const apiKey = "511415362888f54ddd231fc82ca75e8e"; // Käytä vain tätä API-avainta
+        const iconUrl = 'http://openweathermap.org/img/wn/';
+
+        const getLocation = () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    getWeather(position.coords.latitude, position.coords.longitude);
+                    document.getElementById('location').textContent = position.coords.latitude.toFixed(3) + ', ' + position.coords.longitude.toFixed(3);
+                }, error => {
+                    alert(error.message);
+                });
+            } else {
+                alert('Selaimesi ei tue sijaintia');
+            }
+        };
+
+        const getWeather = (lat, lon) => {
+            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('cityName').textContent = data.name;
+                    document.getElementById('temperature').textContent = data.main.temp + ' °C';
+                    document.getElementById('wind-speed').textContent = data.wind.speed + ' m/s';
+                    document.getElementById('weather-description').textContent = data.weather[0].description;
+                    document.getElementById('weather-icon').src = iconUrl + data.weather[0].icon + '@2x.png';
+                })
+                .catch(error => {
+                    alert(error.message);
+                });
+        };
+
+        getLocation();
+    </script>
+
+    <h2>Linkkejä muille sääsivustoille</h2>
     <ul>
-        <li><a href="https://www.yle.fi">Yle.fi</a></li>
-        <li><a href="https://puolustusvoimat.fi">Puolustusvoimat.fi</a></li>
+        <li><a href="https://www.foreca.fi/Finland/Oulu">Foreca.fi</a></li>
+        <li><a href="https://www.ilmatieteenlaitos.fi/saa/oulu">Ilmatieteenlaitos.fi</a></li>
     </ul>
+
+
+
+
+
+
+
+    <h1>TESTI</h1>
+    
+    
+
 
 </body>
 </html>
